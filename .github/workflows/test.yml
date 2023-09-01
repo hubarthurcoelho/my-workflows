@@ -1,0 +1,53 @@
+name: Test Node App
+
+on:
+  workflow_call:
+    inputs:
+      node-version:
+        type: number
+        description: 'Node version to be used'
+        required: true
+      repository:
+        type: string
+        description: 'Repository that is using the workflow'
+        required: true
+      checkout-ref:
+        type: string
+        description: 'Branch that will run the workflow'
+        required: true
+      cache-key:
+        type: string
+        description: 'Cache key to be used'
+        required: true
+
+jobs:
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ inputs.repository }}
+          ref: ${{ inputs.checkout-ref }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ inputs.node-version }}
+
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            **/node_modules
+          key: ${{ runner.os }}-node-${{ inputs.node-version }}-${{ inputs.cache-key }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-${{ inputs.node-version }}-${{ inputs.cache-key }}- 
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test
