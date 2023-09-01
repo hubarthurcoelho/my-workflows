@@ -25,6 +25,10 @@ jobs:
     name: Run Tests
     runs-on: ubuntu-latest
     steps:
+      - name: Print inputs
+        run: |
+          echo "${{ inputs }}"
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
