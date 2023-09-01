@@ -27,7 +27,10 @@ jobs:
     steps:
       - name: Print inputs
         run: |
-          echo "${{ inputs }}"
+          echo repo: "${{ inputs.repository }}"
+          echo ref: "${{ inputs.checkout-ref }}"
+          echo node: "${{ inputs.node-version }}"
+          echo cache: "${{ inputs.cache-key }}"
 
       - name: Checkout code
         uses: actions/checkout@v2
