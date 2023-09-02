@@ -56,7 +56,7 @@ jobs:
         run: echo "${{ steps.cache-dependencies.outputs.cache-hit }}"
 
       - name: Install Dependencies
-        if: !steps.cache-dependencies.outputs.cache-hit
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
         run: npm install
 
       - name: Run tests
