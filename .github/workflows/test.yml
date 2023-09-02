@@ -41,7 +41,7 @@ jobs:
           node-version: ${{ inputs.node-version }}
 
       - name: Load or Install Dependencies
-        uses: hubarthurcoelho/my-workflows/.github/actions/cache-deps@main
+        uses: ./.github/actions/cache-deps
         with:
           node-version: ${{ inputs.node-version }}
           cache-key: ${{ inputs.cache-key }}
@@ -62,7 +62,7 @@ jobs:
           node-version: ${{ inputs.node-version }}
 
       - name: Load or Install Dependencies
-        uses: hubarthurcoelho/my-workflows/.github/actions/cache-deps@main
+        uses: ./.github/actions/cache-deps
         with:
           node-version: ${{ inputs.node-version }}
           cache-key: ${{ inputs.cache-key }}
