@@ -41,7 +41,10 @@ jobs:
           node-version: ${{ inputs.node-version }}
 
       - name: Load or Install Dependencies
-        uses: ./.github/actions/cache-deps
+        uses: hubarthurcoelho/my-workflows/.github/actions/cache-deps@main
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache-key: ${{ inputs.cache-key }}
 
       - name: Run Tests
         run: npm test
@@ -59,7 +62,10 @@ jobs:
           node-version: ${{ inputs.node-version }}
 
       - name: Load or Install Dependencies
-        uses: ./.github/actions/cache-deps
+        uses: hubarthurcoelho/my-workflows/.github/actions/cache-deps@main
+        with:
+          node-version: ${{ inputs.node-version }}
+          cache-key: ${{ inputs.cache-key }}
   
       - name: Run Lint
         run: npm test

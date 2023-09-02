@@ -1,5 +1,14 @@
 name: Install & Cache Dependencies
 description: Get the dependencies from cache or install them.
+inputs:
+  node-version:
+    type: number
+    description: 'Node version to be used'
+    required: true
+  cache-key:
+    type: string
+    description: 'Cache key to be used'
+    required: true
 runs:
   using: 'composite'
   steps:
